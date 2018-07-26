@@ -1,5 +1,5 @@
 
-package OperacionesBasicas;
+package Operaciones;
 
 import javax.swing.JOptionPane;
 
@@ -55,7 +55,7 @@ public class OperacionesBasicas {
         }
     }
     
-    public void mostrarMensaje(String mensaje){
+    public static void mostrarMensaje(String mensaje){
         JOptionPane.showMessageDialog(null,"Hubo un error al procesar tu operacion "+mensaje+" mostraremos un 0");
     }
 }
