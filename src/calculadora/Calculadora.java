@@ -17,6 +17,7 @@ public class Calculadora {
     public static void main(String[] args) {
         ClcInterfaz interfaz = new ClcInterfaz();
         interfaz.setVisible(true);
+        System.out.println("");
     }
     
 }
