@@ -9,12 +9,11 @@ import javax.swing.JOptionPane;
  */
 public class OperacionesBasicas {
     
-    public double operacionSuma(double valores[],int numeroSumas){
+    public double operacionSuma(double valorInicial, double valorFinal){
         double resultado=0;
         try{
-            for(int i=0;i<numeroSumas;i++){
-                resultado+=valores[i];
-            }
+            resultado=valorInicial+valorFinal;
+            
         }catch(Exception e){
             mostrarMensaje("Suma");
         }
@@ -28,6 +27,39 @@ public class OperacionesBasicas {
             return resultado;
         }catch(Exception e){
             mostrarMensaje("Resta");
+            return 0;
+        }
+    }
+    
+    public double operacionMultiplicacion(double primerValor, double segundoValor){
+        double resultado;
+        try{
+            resultado=primerValor*segundoValor;
+            return resultado;
+        }catch(Exception e){
+            mostrarMensaje("Multiplicacion");
+            return 0;
+        }
+    }
+    
+    public double operacionDivision(double primeroValor, double segundoValor){
+        double resultado;
+        try {
+            resultado=primeroValor%segundoValor;
+            return resultado;
+        } catch (Exception e) {
+            mostrarMensaje("Division");
+            return 0;
+        }
+    }
+    
+    public double operacionResiduo(int primerValor, int segundoValor){
+        int resultado;
+        try {
+            resultado=primerValor%segundoValor;
+            return resultado;
+        } catch (Exception e) {
+            mostrarMensaje("Residuo");
             return 0;
         }
     }
