@@ -68,6 +68,7 @@ public class ClcInterfaz extends javax.swing.JFrame {
         btnRaiz = new javax.swing.JButton();
         btnAns = new javax.swing.JButton();
         btnResiduo = new javax.swing.JButton();
+        Datos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Calculadora");
@@ -402,6 +403,13 @@ public class ClcInterfaz extends javax.swing.JFrame {
 
         Paneles.addTab("Operaciones Básicas", OperacionesBasicas);
 
+        Datos.setText("?");
+        Datos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DatosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -421,7 +429,9 @@ public class ClcInterfaz extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(btn8, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btn9, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btn9, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                                    .addComponent(Datos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btn1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -459,7 +469,9 @@ public class ClcInterfaz extends javax.swing.JFrame {
                     .addComponent(btn8, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn9, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn0, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btn0, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                    .addComponent(Datos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -776,6 +788,10 @@ public class ClcInterfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnBinarioActionPerformed
 
+    private void DatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DatosActionPerformed
+        JOptionPane.showMessageDialog(null,"Desarrolladores: \nJuan Pablo Orizabal Gil\nJosé Carlos Soberanis Ramírez.\nVersion: 3.3","Datos de la aplicacion",JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_DatosActionPerformed
+
     public void reiniciarValores(){
         posicion=0;
         valor=true;
@@ -956,6 +972,7 @@ public class ClcInterfaz extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel CalculosDiscretos;
     private javax.swing.JPanel ConvertidorNumerico;
+    private javax.swing.JButton Datos;
     private javax.swing.JPanel OperacionesBasicas;
     private javax.swing.JTabbedPane Paneles;
     private javax.swing.JTextField Texto;
