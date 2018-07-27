@@ -830,7 +830,11 @@ public class ClcInterfaz extends javax.swing.JFrame {
         Double[] vector = new Double[Texto.getText().split(("\\*")).length];
             try{
                 for (int i = 0; i < Texto.getText().split("\\*").length; i++) {
-                    vector[i] = Double.parseDouble(Texto.getText().split("\\*")[i]);
+                    if(Texto.getText().split("\\*")[i].equals("Ans")){
+                        vector[i]= ans;
+                    }else{
+                        vector[i] = Double.parseDouble(Texto.getText().split("\\*")[i]);
+                    }
                 }
                 ans = basicas.operacionMultiplicacion(vector[0], vector[1]);
                 if(vector.length>2){
@@ -847,7 +851,11 @@ public class ClcInterfaz extends javax.swing.JFrame {
         Double[] vector = new Double[Texto.getText().split(("\\/")).length];
             try{
                 for (int i = 0; i < Texto.getText().split("\\/").length; i++) {
-                    vector[i] = Double.parseDouble(Texto.getText().split("\\/")[i]);
+                    if(Texto.getText().split("\\/")[i].equals("Ans")){
+                        vector[i]= ans;
+                    }else{
+                        vector[i] = Double.parseDouble(Texto.getText().split("\\/")[i]);
+                    }
                 }
                 ans = basicas.operacionDivision(vector[0], vector[1]);
                 if(vector.length>2){
@@ -864,7 +872,11 @@ public class ClcInterfaz extends javax.swing.JFrame {
         Double[] vector = new Double[Texto.getText().split(("\\%")).length];
             try{
                 for (int i = 0; i < Texto.getText().split("\\%").length; i++) {
-                    vector[i] = Double.parseDouble(Texto.getText().split("\\%")[i]);
+                    if(Texto.getText().split("\\%")[i].equals("Ans")){
+                        vector[i]= ans;
+                    }else{
+                        vector[i] = Double.parseDouble(Texto.getText().split("\\%")[i]);
+                    }
                 }
                 ans = basicas.operacionResiduo(vector[0], vector[1]);
                 if(vector.length>2){
