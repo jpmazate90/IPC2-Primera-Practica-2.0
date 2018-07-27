@@ -5,6 +5,9 @@
  */
 package calculadora;
 
+import javax.swing.JOptionPane;
+import Operaciones.*;
+
 /**
  *
  * @author soberanis
@@ -12,7 +15,11 @@ package calculadora;
 public class ClcInterfaz extends javax.swing.JFrame {
 
 
-    private int num1, num2, resul, posicion;
+    private int posicion;
+    private double ans, resul;
+    private OperacionesBasicas basicas = new OperacionesBasicas();
+    private OperacionesConvertidoras convertidoras = new OperacionesConvertidoras();
+    private OperacionesDiscretas discretas = new OperacionesDiscretas();
     private String cadena;
     private boolean valor=true, validez=true;
     
@@ -41,17 +48,29 @@ public class ClcInterfaz extends javax.swing.JFrame {
         btn7 = new javax.swing.JButton();
         btn0 = new javax.swing.JButton();
         Paneles = new javax.swing.JTabbedPane();
+        CalculosDiscretos = new javax.swing.JPanel();
+        btnFactorial = new javax.swing.JButton();
+        btnPermutacion = new javax.swing.JButton();
+        btnCombinacion = new javax.swing.JButton();
+        btnSeparador = new javax.swing.JButton();
+        btnInstrucciones = new javax.swing.JButton();
+        ConvertidorNumerico = new javax.swing.JPanel();
+        btnHexadecimal = new javax.swing.JButton();
+        btnOctal = new javax.swing.JButton();
+        btnBinario = new javax.swing.JButton();
         OperacionesBasicas = new javax.swing.JPanel();
         btnSuma = new javax.swing.JButton();
         btnResta = new javax.swing.JButton();
         btnIgual = new javax.swing.JButton();
         btnMultiplicacion = new javax.swing.JButton();
-        CalculosDiscretos = new javax.swing.JPanel();
-        ConvertidorNumerico = new javax.swing.JPanel();
+        btnDivision = new javax.swing.JButton();
+        btnPotencia = new javax.swing.JButton();
+        btnRaiz = new javax.swing.JButton();
+        btnAns = new javax.swing.JButton();
+        btnResiduo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Calculadora");
-        setPreferredSize(new java.awt.Dimension(350, 300));
         setSize(new java.awt.Dimension(350, 300));
 
         btn1.setText("1");
@@ -124,8 +143,129 @@ public class ClcInterfaz extends javax.swing.JFrame {
             }
         });
 
+        btnFactorial.setText("Factorial");
+        btnFactorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFactorialActionPerformed(evt);
+            }
+        });
+
+        btnPermutacion.setText("Permutacion");
+        btnPermutacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPermutacionActionPerformed(evt);
+            }
+        });
+
+        btnCombinacion.setText("Combinacion");
+        btnCombinacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCombinacionActionPerformed(evt);
+            }
+        });
+
+        btnSeparador.setText("/");
+        btnSeparador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSeparadorActionPerformed(evt);
+            }
+        });
+
+        btnInstrucciones.setText("Instrucciones");
+        btnInstrucciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInstruccionesActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout CalculosDiscretosLayout = new javax.swing.GroupLayout(CalculosDiscretos);
+        CalculosDiscretos.setLayout(CalculosDiscretosLayout);
+        CalculosDiscretosLayout.setHorizontalGroup(
+            CalculosDiscretosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CalculosDiscretosLayout.createSequentialGroup()
+                .addContainerGap(36, Short.MAX_VALUE)
+                .addGroup(CalculosDiscretosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CalculosDiscretosLayout.createSequentialGroup()
+                        .addGroup(CalculosDiscretosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnCombinacion, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnPermutacion, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnFactorial, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(53, 53, 53))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CalculosDiscretosLayout.createSequentialGroup()
+                        .addComponent(btnSeparador, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnInstrucciones, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
+        );
+        CalculosDiscretosLayout.setVerticalGroup(
+            CalculosDiscretosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CalculosDiscretosLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(btnFactorial)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnPermutacion)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCombinacion)
+                .addGap(18, 18, 18)
+                .addGroup(CalculosDiscretosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnInstrucciones)
+                    .addComponent(btnSeparador))
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+
+        Paneles.addTab("Cálculos Discretos", CalculosDiscretos);
+
+        btnHexadecimal.setText("a Hexadecimal");
+        btnHexadecimal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHexadecimalActionPerformed(evt);
+            }
+        });
+
+        btnOctal.setText("a Octal");
+        btnOctal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOctalActionPerformed(evt);
+            }
+        });
+
+        btnBinario.setText("a Binario");
+        btnBinario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBinarioActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout ConvertidorNumericoLayout = new javax.swing.GroupLayout(ConvertidorNumerico);
+        ConvertidorNumerico.setLayout(ConvertidorNumericoLayout);
+        ConvertidorNumericoLayout.setHorizontalGroup(
+            ConvertidorNumericoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ConvertidorNumericoLayout.createSequentialGroup()
+                .addContainerGap(53, Short.MAX_VALUE)
+                .addGroup(ConvertidorNumericoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnBinario, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnOctal, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnHexadecimal, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(49, 49, 49))
+        );
+        ConvertidorNumericoLayout.setVerticalGroup(
+            ConvertidorNumericoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ConvertidorNumericoLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(btnHexadecimal)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnOctal)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnBinario)
+                .addContainerGap(32, Short.MAX_VALUE))
+        );
+
+        Paneles.addTab("Convertidor Numérico", ConvertidorNumerico);
+
         btnSuma.setText("+");
-        btnSuma.setPreferredSize(new java.awt.Dimension(25, 25));
+        btnSuma.setMaximumSize(new java.awt.Dimension(50, 50));
+        btnSuma.setMinimumSize(new java.awt.Dimension(50, 50));
+        btnSuma.setPreferredSize(new java.awt.Dimension(50, 50));
         btnSuma.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSumaActionPerformed(evt);
@@ -133,6 +273,9 @@ public class ClcInterfaz extends javax.swing.JFrame {
         });
 
         btnResta.setText("-");
+        btnResta.setMaximumSize(new java.awt.Dimension(50, 50));
+        btnResta.setMinimumSize(new java.awt.Dimension(50, 50));
+        btnResta.setPreferredSize(new java.awt.Dimension(50, 50));
         btnResta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRestaActionPerformed(evt);
@@ -140,7 +283,9 @@ public class ClcInterfaz extends javax.swing.JFrame {
         });
 
         btnIgual.setText("=");
-        btnIgual.setPreferredSize(new java.awt.Dimension(25, 25));
+        btnIgual.setMaximumSize(new java.awt.Dimension(50, 50));
+        btnIgual.setMinimumSize(new java.awt.Dimension(50, 50));
+        btnIgual.setPreferredSize(new java.awt.Dimension(50, 50));
         btnIgual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIgualActionPerformed(evt);
@@ -148,9 +293,62 @@ public class ClcInterfaz extends javax.swing.JFrame {
         });
 
         btnMultiplicacion.setText("*");
+        btnMultiplicacion.setMaximumSize(new java.awt.Dimension(50, 50));
+        btnMultiplicacion.setMinimumSize(new java.awt.Dimension(50, 50));
+        btnMultiplicacion.setPreferredSize(new java.awt.Dimension(50, 50));
         btnMultiplicacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMultiplicacionActionPerformed(evt);
+            }
+        });
+
+        btnDivision.setText("/");
+        btnDivision.setMaximumSize(new java.awt.Dimension(50, 50));
+        btnDivision.setMinimumSize(new java.awt.Dimension(50, 50));
+        btnDivision.setPreferredSize(new java.awt.Dimension(50, 50));
+        btnDivision.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDivisionActionPerformed(evt);
+            }
+        });
+
+        btnPotencia.setText("^");
+        btnPotencia.setMaximumSize(new java.awt.Dimension(50, 50));
+        btnPotencia.setMinimumSize(new java.awt.Dimension(50, 50));
+        btnPotencia.setPreferredSize(new java.awt.Dimension(50, 50));
+        btnPotencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPotenciaActionPerformed(evt);
+            }
+        });
+
+        btnRaiz.setText("n raiz de");
+        btnRaiz.setMaximumSize(new java.awt.Dimension(105, 50));
+        btnRaiz.setMinimumSize(new java.awt.Dimension(105, 50));
+        btnRaiz.setPreferredSize(new java.awt.Dimension(105, 50));
+        btnRaiz.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRaizActionPerformed(evt);
+            }
+        });
+
+        btnAns.setText("Ans");
+        btnAns.setMaximumSize(new java.awt.Dimension(50, 50));
+        btnAns.setMinimumSize(new java.awt.Dimension(50, 50));
+        btnAns.setPreferredSize(new java.awt.Dimension(50, 50));
+        btnAns.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAnsActionPerformed(evt);
+            }
+        });
+
+        btnResiduo.setText("%");
+        btnResiduo.setMaximumSize(new java.awt.Dimension(50, 50));
+        btnResiduo.setMinimumSize(new java.awt.Dimension(50, 50));
+        btnResiduo.setPreferredSize(new java.awt.Dimension(50, 50));
+        btnResiduo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResiduoActionPerformed(evt);
             }
         });
 
@@ -160,63 +358,56 @@ public class ClcInterfaz extends javax.swing.JFrame {
             OperacionesBasicasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(OperacionesBasicasLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(OperacionesBasicasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnResta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnSuma, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(OperacionesBasicasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnIgual, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                    .addComponent(btnMultiplicacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addGroup(OperacionesBasicasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(OperacionesBasicasLayout.createSequentialGroup()
+                        .addGroup(OperacionesBasicasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(OperacionesBasicasLayout.createSequentialGroup()
+                                .addComponent(btnResiduo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnPotencia, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(OperacionesBasicasLayout.createSequentialGroup()
+                                .addComponent(btnSuma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnResta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(OperacionesBasicasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnAns, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                            .addComponent(btnMultiplicacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(OperacionesBasicasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnDivision, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnIgual, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnRaiz, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         OperacionesBasicasLayout.setVerticalGroup(
             OperacionesBasicasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(OperacionesBasicasLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(OperacionesBasicasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnSuma, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                    .addComponent(btnIgual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(OperacionesBasicasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSuma, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnResta, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDivision, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnMultiplicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(OperacionesBasicasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnIgual, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnResiduo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPotencia, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAns, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnRaiz, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         Paneles.addTab("Operaciones Básicas", OperacionesBasicas);
-
-        javax.swing.GroupLayout CalculosDiscretosLayout = new javax.swing.GroupLayout(CalculosDiscretos);
-        CalculosDiscretos.setLayout(CalculosDiscretosLayout);
-        CalculosDiscretosLayout.setHorizontalGroup(
-            CalculosDiscretosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 196, Short.MAX_VALUE)
-        );
-        CalculosDiscretosLayout.setVerticalGroup(
-            CalculosDiscretosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 185, Short.MAX_VALUE)
-        );
-
-        Paneles.addTab("Cálculos Discretos", CalculosDiscretos);
-
-        javax.swing.GroupLayout ConvertidorNumericoLayout = new javax.swing.GroupLayout(ConvertidorNumerico);
-        ConvertidorNumerico.setLayout(ConvertidorNumericoLayout);
-        ConvertidorNumericoLayout.setHorizontalGroup(
-            ConvertidorNumericoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 196, Short.MAX_VALUE)
-        );
-        ConvertidorNumericoLayout.setVerticalGroup(
-            ConvertidorNumericoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 185, Short.MAX_VALUE)
-        );
-
-        Paneles.addTab("Convertidor Numérico", ConvertidorNumerico);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Texto, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
@@ -244,7 +435,7 @@ public class ClcInterfaz extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btn6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(18, 18, 18)
-                .addComponent(Paneles)
+                .addComponent(Paneles, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -278,18 +469,6 @@ public class ClcInterfaz extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnSumaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSumaActionPerformed
-        if(!valor){
-            reiniciarValores();
-            Texto.setText("");
-        }
-        if(validez){
-            Texto.setText(Texto.getText()+"+");
-            posicion = Texto.getText().indexOf("+");
-            validez=false;
-        }
-    }//GEN-LAST:event_btnSumaActionPerformed
 
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
         if(!valor){
@@ -371,57 +550,361 @@ public class ClcInterfaz extends javax.swing.JFrame {
         Texto.setText(Texto.getText()+"0");
     }//GEN-LAST:event_btn0ActionPerformed
 
-    private void btnRestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestaActionPerformed
+    private void btnAnsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnsActionPerformed
+        if(!valor){
+            Texto.setText("");
+            reiniciarValores();
+            Texto.setText(Texto.getText()+"Ans");        
+        }else{
+            Texto.setText(Texto.getText()+"Ans");
+        }
+    }//GEN-LAST:event_btnAnsActionPerformed
+
+    private void btnRaizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRaizActionPerformed
+        btnAns.setEnabled(false); btnSuma.setEnabled(false); btnResta.setEnabled(false); btnResiduo.setEnabled(false);
+        btnMultiplicacion.setEnabled(false); btnDivision.setEnabled(false); btnPotencia.setEnabled(false);
+        btnRaiz.setEnabled(false);
+        if(Texto.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "No se ingreso el número de la raíz que se desea obtener.");
+            habilitarBotones();
+        }else{
+            Texto.setText(Texto.getText()+"RaizDe");
+            posicion = Texto.getText().indexOf("R");
+        }
+    }//GEN-LAST:event_btnRaizActionPerformed
+
+    private void btnPotenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPotenciaActionPerformed
+        btnAns.setEnabled(false); btnSuma.setEnabled(false); btnResta.setEnabled(false);btnDivision.setEnabled(false);
+        btnMultiplicacion.setEnabled(false); btnPotencia.setEnabled(false);btnRaiz.setEnabled(false);btnResiduo.setEnabled(false);
+        if(Texto.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"No se ingreso la base de la potencia.");
+            habilitarBotones();
+        }else{
+            Texto.setText(Texto.getText()+"^");
+            posicion = Texto.getText().indexOf("^");
+        }
+    }//GEN-LAST:event_btnPotenciaActionPerformed
+
+    private void btnDivisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDivisionActionPerformed
+        btnSuma.setEnabled(false); btnResta.setEnabled(false);btnResiduo.setEnabled(false);
+        btnMultiplicacion.setEnabled(false); btnPotencia.setEnabled(false);btnRaiz.setEnabled(false);
         if(!valor){
             Texto.setText("");
             reiniciarValores();
         }
-        if(validez){    
-            Texto.setText(Texto.getText()+"-");
-            posicion = Texto.getText().indexOf("-");
-            validez=false;
-        }
-    }//GEN-LAST:event_btnRestaActionPerformed
-
-    private void btnIgualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIgualActionPerformed
-            num1 = Integer.parseInt(Texto.getText().substring(0, posicion));
-            num2 = Integer.parseInt(Texto.getText().substring(posicion+1, Texto.getText().length()));
-            operacion();
-            Texto.setText(String.valueOf(resul));
-            valor=false;
-    }//GEN-LAST:event_btnIgualActionPerformed
+        Texto.setText(Texto.getText()+"/");
+        posicion = Texto.getText().indexOf("/");
+    }//GEN-LAST:event_btnDivisionActionPerformed
 
     private void btnMultiplicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMultiplicacionActionPerformed
+        btnSuma.setEnabled(false); btnResta.setEnabled(false);btnDivision.setEnabled(false);
+        btnPotencia.setEnabled(false);btnRaiz.setEnabled(false);btnResiduo.setEnabled(false);
         if(!valor){
             Texto.setText("");
             reiniciarValores();
         }
-        if(validez){    
-            Texto.setText(Texto.getText()+"*");
-            posicion = Texto.getText().indexOf("*");
-            validez=false;
-        }
+        Texto.setText(Texto.getText()+"*");
+        posicion = Texto.getText().indexOf("*");
+
     }//GEN-LAST:event_btnMultiplicacionActionPerformed
+
+    private void btnIgualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIgualActionPerformed
+        operacion();
+        Texto.setText(String.valueOf(resul));
+        ans=resul;
+        valor=false;
+        habilitarBotones();
+    }//GEN-LAST:event_btnIgualActionPerformed
+
+    private void btnRestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestaActionPerformed
+        btnSuma.setEnabled(false);btnDivision.setEnabled(false);btnResiduo.setEnabled(false);
+        btnMultiplicacion.setEnabled(false); btnPotencia.setEnabled(false);btnRaiz.setEnabled(false);
+        if(!valor){
+            Texto.setText("");
+            reiniciarValores();
+        }
+        Texto.setText(Texto.getText()+"-");
+        posicion = Texto.getText().indexOf("-");
+    }//GEN-LAST:event_btnRestaActionPerformed
+
+    private void btnSumaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSumaActionPerformed
+        btnResta.setEnabled(false);btnDivision.setEnabled(false);btnResiduo.setEnabled(false);
+        btnMultiplicacion.setEnabled(false); btnPotencia.setEnabled(false);btnRaiz.setEnabled(false);
+        if(!valor){
+            reiniciarValores();
+            Texto.setText("");
+        }
+        Texto.setText(Texto.getText()+"+");
+        posicion = Texto.getText().indexOf("+");
+    }//GEN-LAST:event_btnSumaActionPerformed
+
+    private void btnResiduoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResiduoActionPerformed
+        btnSuma.setEnabled(false); btnResta.setEnabled(false);btnDivision.setEnabled(false);
+        btnMultiplicacion.setEnabled(false); btnPotencia.setEnabled(false);btnRaiz.setEnabled(false);
+        if(!valor){
+            Texto.setText("");
+            reiniciarValores();
+        }
+        Texto.setText(Texto.getText()+"%");
+        posicion = Texto.getText().indexOf("%");
+    }//GEN-LAST:event_btnResiduoActionPerformed
+
+    private void btnInstruccionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInstruccionesActionPerformed
+        JOptionPane.showMessageDialog(null,"Para la cominación y\n" +
+                                        "permutación se requiere\n" +
+                                        "el formato siguiente:\n" +
+                                        "'N/R' donde el número\n" +
+                                        "n y r serán separados por\n" +
+                                        "'/'.");
+    }//GEN-LAST:event_btnInstruccionesActionPerformed
+
+    private void btnPermutacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPermutacionActionPerformed
+        if(!valor){
+            Texto.setText("");
+        }
+        if(!Texto.getText().isEmpty()){
+            try{
+                Double[] vector = new Double[Texto.getText().split("\\/").length];
+                for (int i = 0; i < vector.length; i++) {
+                    vector[i] = Double.parseDouble(Texto.getText().split("\\/")[i]);
+                }
+                if(vector.length>2||vector[0]<vector[1]){
+                    JOptionPane.showMessageDialog(null, "Ingresó mas de una vez el signo '/', o r es mayor que n.");
+                }else{
+                    resul = discretas.opcionPermutacion(vector[0].intValue(), vector[1].intValue());
+                    ans = resul;
+                    Texto.setText(String.valueOf(resul));
+                    valor=false;
+                }
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "La expresion ingresada no es válida.");
+            }
+        }else{JOptionPane.showMessageDialog(null, "Primero ingrese algo.");}
+    }//GEN-LAST:event_btnPermutacionActionPerformed
+
+    private void btnFactorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFactorialActionPerformed
+        if(!valor){
+            Texto.setText("");
+        }
+        if(!Texto.getText().isEmpty()){
+            try{
+                resul = discretas.opcionFactorial(Integer.parseInt(Texto.getText()));
+                Texto.setText(String.valueOf(resul));
+                valor=false;
+                ans = resul;
+                valor=false;
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null,"No se ingresó un valor válido.");
+            }
+        }else{JOptionPane.showMessageDialog(null, "Primero ingrese algo.");}
+    }//GEN-LAST:event_btnFactorialActionPerformed
+
+    private void btnSeparadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeparadorActionPerformed
+        if(!valor){
+            Texto.setText("");
+            reiniciarValores();
+        }
+        Texto.setText(Texto.getText()+"/");
+    }//GEN-LAST:event_btnSeparadorActionPerformed
+
+    private void btnCombinacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCombinacionActionPerformed
+        if(!valor){
+            Texto.setText("");
+        }
+        if(!Texto.getText().isEmpty()){
+            try{
+                Double[] vector = new Double[Texto.getText().split("\\/").length];
+                for (int i = 0; i < vector.length; i++) {
+                    vector[i] = Double.parseDouble(Texto.getText().split("\\/")[i]);
+                }
+                if(vector.length>2||vector[0]<vector[1]){
+                    JOptionPane.showMessageDialog(null, "Ingresó mas de una vez el signo '/', o r es mayor que n.");
+                }else{
+                    resul = discretas.opcionCombinacion(vector[0].intValue(),vector[1].intValue());
+                    ans = resul;
+                    Texto.setText(String.valueOf(resul));
+                    valor=false;
+                }
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "La expresion ingresada no es válida.");
+            }
+        }else{JOptionPane.showMessageDialog(null, "Primero ingrese algo.");}
+    }//GEN-LAST:event_btnCombinacionActionPerformed
+
+    private void btnHexadecimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHexadecimalActionPerformed
+        if(!valor){
+            Texto.setText("");
+        }
+        if(!Texto.getText().isEmpty()){
+            try{
+                resul = convertidoras.opcionDecimalAHexadecimal(Integer.parseInt(Texto.getText()));
+                Texto.setText(String.valueOf(resul));
+                valor=false;
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null,"No se ingresó un valo válido.");
+            }
+        }
+    }//GEN-LAST:event_btnHexadecimalActionPerformed
+
+    private void btnOctalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOctalActionPerformed
+        if(!valor){
+            Texto.setText("");
+        }
+        if(!Texto.getText().isEmpty()){
+            try{
+                resul = convertidoras.opcionDecimalAOctal(Integer.parseInt(Texto.getText()));
+                Texto.setText(String.valueOf(resul));
+                valor=false;
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null,"No se ingresó un valo válido.");
+            }
+        }
+    }//GEN-LAST:event_btnOctalActionPerformed
+
+    private void btnBinarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBinarioActionPerformed
+        if(!valor){
+            Texto.setText("");
+        }
+        if(!Texto.getText().isEmpty()){
+            try{
+                resul = convertidoras.opcionDecimalABinario(Integer.parseInt(Texto.getText()));
+                Texto.setText(String.valueOf(resul));
+                valor=false;
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null,"No se ingresó un valo válido.");
+            }
+        }
+    }//GEN-LAST:event_btnBinarioActionPerformed
 
     public void reiniciarValores(){
         posicion=0;
-        num1=0;
-        num2=0;
         valor=true;
         validez=true;
         resul=0;
     }
     
     public void operacion(){
-        if(Texto.getText().substring(posicion, posicion+1).equals("+")){
-            resul = num1+num2;
+        if(Texto.getText().contains("+")){
+        Double[] vector = new Double[Texto.getText().split("\\+").length];
+            try{
+                for (int i = 0; i < Texto.getText().split("\\+").length; i++) {
+                    if(Texto.getText().split("\\+")[i].equals("Ans")){
+                        vector[i]= ans;
+                    }else{
+                        vector[i] = Double.parseDouble(Texto.getText().split("\\+")[i]);
+                    }
+                }
+                ans = basicas.operacionSuma(vector[0], vector[1]);
+                if(vector.length>2){
+                    for (int i = 2; i < vector.length; i++) {
+                        ans = basicas.operacionSuma(ans,vector[i]);
+                    }
+                }
+                resul=ans;
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "No se ingresaron algunos valores válidos,o hay '+' seguidos.");
+            }
         }
-        if(Texto.getText().substring(posicion, posicion+1).equals("-")){
-            resul = num1-num2;
+        if(Texto.getText().contains("-")){
+        Double[] vector = new Double[Texto.getText().split(("\\-")).length];
+            try{
+                for (int i = 0; i < Texto.getText().split("\\-").length; i++) {
+                    if(Texto.getText().split("\\-")[i].equals("Ans")){
+                        vector[i]= ans;
+                    }else{
+                        vector[i] = Double.parseDouble(Texto.getText().split("\\-")[i]);
+                    }
+                }
+                ans = basicas.operacionResta(vector[0], vector[1]);
+                if(vector.length>2){
+                    for (int i = 2; i < vector.length; i++) {
+                        ans = basicas.operacionResta(ans,vector[i]);
+                    }
+                }
+                resul=ans;
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "No se ingresaron algunos valores válidos, o hay '-' seguidos.");
+            }
         }
-        if(Texto.getText().substring(posicion, posicion+1).equals("*")){
-            resul = num1*num2;
+        if(Texto.getText().contains("*")){
+        Double[] vector = new Double[Texto.getText().split(("\\*")).length];
+            try{
+                for (int i = 0; i < Texto.getText().split("\\*").length; i++) {
+                    vector[i] = Double.parseDouble(Texto.getText().split("\\*")[i]);
+                }
+                ans = basicas.operacionMultiplicacion(vector[0], vector[1]);
+                if(vector.length>2){
+                    for (int i = 2; i < vector.length; i++) {
+                        ans = basicas.operacionMultiplicacion(ans,vector[i]);
+                    }
+                }
+                resul=ans;
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "No se ingresaron algunos valores válidos, o hay '*' seguidos.");
+            }
         }
+        if(Texto.getText().contains("/")){
+        Double[] vector = new Double[Texto.getText().split(("\\/")).length];
+            try{
+                for (int i = 0; i < Texto.getText().split("\\/").length; i++) {
+                    vector[i] = Double.parseDouble(Texto.getText().split("\\/")[i]);
+                }
+                ans = basicas.operacionDivision(vector[0], vector[1]);
+                if(vector.length>2){
+                    for (int i = 2; i < vector.length; i++) {
+                      ans = basicas.operacionDivision(ans,vector[i]);
+                    }
+                }
+                resul=ans;
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "No se ingresaron algunos valores válidos, o hay '/' seguidos.");
+            }
+        }
+        if(Texto.getText().contains("%")){
+        Double[] vector = new Double[Texto.getText().split(("\\%")).length];
+            try{
+                for (int i = 0; i < Texto.getText().split("\\%").length; i++) {
+                    vector[i] = Double.parseDouble(Texto.getText().split("\\%")[i]);
+                }
+                ans = basicas.operacionResiduo(vector[0], vector[1]);
+                if(vector.length>2){
+                    for (int i = 2; i < vector.length; i++) {
+                      ans = basicas.operacionResiduo(ans,vector[i]);
+                    }
+                }
+                resul=ans;
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "No se ingresaron algunos valores válidos, o hay '%' seguidos.");
+            }
+        }
+        if(Texto.getText().contains("^")){
+            int base, exponente;
+            try{
+                base = Integer.parseInt(Texto.getText().substring(0,posicion));
+                exponente = Integer.parseInt(Texto.getText().substring(posicion+1,Texto.getText().length()));
+                resul = basicas.operacionPotencia(exponente, base);
+                ans = resul;
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "No se ingresaron algunos valores validos.");
+            }
+        }
+        if(Texto.getText().contains("RaizDe")){
+            int exponente, base;
+            try{
+                exponente = Integer.parseInt(Texto.getText().substring(0,posicion));
+                base = Integer.parseInt(Texto.getText().substring(posicion+6,Texto.getText().length()));
+                resul = basicas.operacionRaiz(exponente, base);
+                ans = resul;
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "No se ingresaron algunos valores validos.");
+            }
+        }
+    }
+    
+    public void habilitarBotones(){
+        btnSuma.setEnabled(true); btnResta.setEnabled(true); btnMultiplicacion.setEnabled(true);
+        btnDivision.setEnabled(true); btnPotencia.setEnabled(true); btnRaiz.setEnabled(true);
+        btnAns.setEnabled(true);btnResiduo.setEnabled(true);
     }
     /**
      * @param args the command line arguments
@@ -474,9 +957,22 @@ public class ClcInterfaz extends javax.swing.JFrame {
     private javax.swing.JButton btn7;
     private javax.swing.JButton btn8;
     private javax.swing.JButton btn9;
+    private javax.swing.JButton btnAns;
+    private javax.swing.JButton btnBinario;
+    private javax.swing.JButton btnCombinacion;
+    private javax.swing.JButton btnDivision;
+    private javax.swing.JButton btnFactorial;
+    private javax.swing.JButton btnHexadecimal;
     private javax.swing.JButton btnIgual;
+    private javax.swing.JButton btnInstrucciones;
     private javax.swing.JButton btnMultiplicacion;
+    private javax.swing.JButton btnOctal;
+    private javax.swing.JButton btnPermutacion;
+    private javax.swing.JButton btnPotencia;
+    private javax.swing.JButton btnRaiz;
+    private javax.swing.JButton btnResiduo;
     private javax.swing.JButton btnResta;
+    private javax.swing.JButton btnSeparador;
     private javax.swing.JButton btnSuma;
     // End of variables declaration//GEN-END:variables
 }
