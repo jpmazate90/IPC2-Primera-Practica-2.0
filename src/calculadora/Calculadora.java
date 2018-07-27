@@ -15,8 +15,10 @@ public class Calculadora {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        System.out.println("Esto es una prueba para ver si esta conectado correctamente 2");
         ClcInterfaz interfaz = new ClcInterfaz();
         interfaz.setVisible(true);
+        
     }
     
 }
