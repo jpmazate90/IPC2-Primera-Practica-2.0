@@ -45,7 +45,7 @@ public class OperacionesBasicas {
     public double operacionDivision(double primeroValor, double segundoValor){
         double resultado;
         try {
-            resultado=primeroValor%segundoValor;
+            resultado=primeroValor/segundoValor;
             return resultado;
         } catch (Exception e) {
             mostrarMensaje("Division");
@@ -53,8 +53,8 @@ public class OperacionesBasicas {
         }
     }
     
-    public double operacionResiduo(int primerValor, int segundoValor){
-        int resultado;
+    public static double operacionResiduo(double primerValor, double segundoValor){
+        double resultado;
         try {
             resultado=primerValor%segundoValor;
             return resultado;
