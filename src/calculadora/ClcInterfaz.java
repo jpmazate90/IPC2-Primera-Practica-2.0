@@ -823,6 +823,10 @@ public class ClcInterfaz extends javax.swing.JFrame {
     }
     
     public void operacion(){
+        if(Texto.getText().equals("Ans")){
+            resul = ans;
+            Texto.setText(String.valueOf(resul));
+        }
         if(Texto.getText().contains("+")){
         Double[] vector = new Double[Texto.getText().split("\\+").length];
             try{
