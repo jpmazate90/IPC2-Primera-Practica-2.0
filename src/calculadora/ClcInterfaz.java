@@ -68,6 +68,7 @@ public class ClcInterfaz extends javax.swing.JFrame {
         btnRaiz = new javax.swing.JButton();
         btnAns = new javax.swing.JButton();
         btnResiduo = new javax.swing.JButton();
+        btnPunto = new javax.swing.JButton();
         Datos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -353,6 +354,16 @@ public class ClcInterfaz extends javax.swing.JFrame {
             }
         });
 
+        btnPunto.setText(".");
+        btnPunto.setMaximumSize(new java.awt.Dimension(50, 50));
+        btnPunto.setMinimumSize(new java.awt.Dimension(50, 50));
+        btnPunto.setPreferredSize(new java.awt.Dimension(50, 50));
+        btnPunto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPuntoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout OperacionesBasicasLayout = new javax.swing.GroupLayout(OperacionesBasicas);
         OperacionesBasicas.setLayout(OperacionesBasicasLayout);
         OperacionesBasicasLayout.setHorizontalGroup(
@@ -378,7 +389,10 @@ public class ClcInterfaz extends javax.swing.JFrame {
                         .addGroup(OperacionesBasicasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnDivision, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnIgual, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(btnRaiz, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(OperacionesBasicasLayout.createSequentialGroup()
+                        .addComponent(btnRaiz, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnPunto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         OperacionesBasicasLayout.setVerticalGroup(
@@ -397,7 +411,9 @@ public class ClcInterfaz extends javax.swing.JFrame {
                     .addComponent(btnPotencia, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAns, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnRaiz, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(OperacionesBasicasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRaiz, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPunto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -617,7 +633,6 @@ public class ClcInterfaz extends javax.swing.JFrame {
         }
         Texto.setText(Texto.getText()+"*");
         posicion = Texto.getText().indexOf("*");
-
     }//GEN-LAST:event_btnMultiplicacionActionPerformed
 
     private void btnIgualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIgualActionPerformed
@@ -792,6 +807,14 @@ public class ClcInterfaz extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null,"Desarrolladores: \nJuan Pablo Orizabal Gil\nJosé Carlos Soberanis Ramírez.\nVersion: 3.3","Datos de la aplicacion",JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_DatosActionPerformed
 
+    private void btnPuntoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPuntoActionPerformed
+        if(!valor){
+            Texto.setText("");
+            reiniciarValores();
+        }
+        Texto.setText(Texto.getText()+".");
+    }//GEN-LAST:event_btnPuntoActionPerformed
+
     public void reiniciarValores(){
         posicion=0;
         valor=true;
@@ -906,10 +929,14 @@ public class ClcInterfaz extends javax.swing.JFrame {
             }
         }
         if(Texto.getText().contains("^")){
-            int base, exponente;
+            Double base, exponente;
             try{
-                base = Integer.parseInt(Texto.getText().substring(0,posicion));
-                exponente = Integer.parseInt(Texto.getText().substring(posicion+1,Texto.getText().length()));
+                if(Texto.getText().substring(0, posicion).equals("Ans")){
+                    base = ans;
+                }else{
+                    base = Double.parseDouble(Texto.getText().substring(0,posicion));
+                }
+                exponente = Double.parseDouble(Texto.getText().substring(posicion+1,Texto.getText().length()));
                 resul = basicas.operacionPotencia(exponente, base);
                 ans = resul;
             }catch(Exception e){
@@ -917,10 +944,14 @@ public class ClcInterfaz extends javax.swing.JFrame {
             }
         }
         if(Texto.getText().contains("RaizDe")){
-            int exponente, base;
+            Double exponente, base;
             try{
-                exponente = Integer.parseInt(Texto.getText().substring(0,posicion));
-                base = Integer.parseInt(Texto.getText().substring(posicion+6,Texto.getText().length()));
+                if(Texto.getText().substring(0,posicion).equals("Ans")){
+                    exponente = ans;
+                }else{
+                    exponente = Double.parseDouble(Texto.getText().substring(0,posicion));
+                }
+                base = Double.parseDouble(Texto.getText().substring(posicion+6,Texto.getText().length()));
                 resul = basicas.operacionRaiz(exponente, base);
                 ans = resul;
             }catch(Exception e){
@@ -998,6 +1029,7 @@ public class ClcInterfaz extends javax.swing.JFrame {
     private javax.swing.JButton btnOctal;
     private javax.swing.JButton btnPermutacion;
     private javax.swing.JButton btnPotencia;
+    private javax.swing.JButton btnPunto;
     private javax.swing.JButton btnRaiz;
     private javax.swing.JButton btnResiduo;
     private javax.swing.JButton btnResta;
